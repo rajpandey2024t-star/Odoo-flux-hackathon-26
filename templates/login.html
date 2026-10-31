@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in · Subly</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+</head>
+<body>
+  <main class="auth-shell">
+    <section class="auth-card">
+      <a class="auth-brand" href="/"> <span class="auth-mark">✓</span> subly<span>.</span></a>
+      <p class="auth-eyebrow">WELCOME BACK</p>
+      <h1>Sign in to Subly</h1>
+      <p class="auth-description">Use your account email and password to continue.</p>
+      {% if error %}<div class="auth-error">{{ error }}</div>{% endif %}
+      <form method="post" action="{{ url_for('login') }}">
+        <label>Email address<input name="email" type="email" autocomplete="email" required placeholder="you@company.com"></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required placeholder="Your password"></label>
+        <button type="submit">Sign in <span>→</span></button>
+      </form>
+      <p class="auth-footnote">New Brightloop customer? <a href="{{ url_for('signup') }}">Create your customer account</a></p>
+      <p class="auth-footnote">Forgot your password? Ask your workspace admin to help reset it.</p>
+    </section>
+    <footer>Subscription management, made clear.</footer>
+  </main>
+</body>
+</html>

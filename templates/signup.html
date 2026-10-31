@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create account · Subly</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+</head>
+<body>
+  <main class="auth-shell">
+    <section class="auth-card">
+      <a class="auth-brand" href="/"> <span class="auth-mark">✓</span> subly<span>.</span></a>
+      <p class="auth-eyebrow">CUSTOMER PORTAL</p>
+      <h1>Create your account</h1>
+      <p class="auth-description">Use the email address attached to your Brightloop subscription.</p>
+      {% if error %}<div class="auth-error">{{ error }}</div>{% endif %}
+      <form method="post" action="{{ url_for('signup') }}">
+        <label>Your name<input name="name" autocomplete="name" required placeholder="e.g. Asha Sharma"></label>
+        <label>Subscription email<input name="email" type="email" autocomplete="email" required placeholder="you@company.com"></label>
+        <label>Create password<input name="password" type="password" autocomplete="new-password" required minlength="9" placeholder="Create a strong password"><small>More than 8 characters, with uppercase, lowercase and a special character.</small></label>
+        <button type="submit">Create customer account <span>→</span></button>
+      </form>
+      <p class="auth-footnote">Already have an account? <a href="{{ url_for('login') }}">Sign in</a></p>
+    </section>
+    <footer>Subscription management, made clear.</footer>
+  </main>
+</body>
+</html>

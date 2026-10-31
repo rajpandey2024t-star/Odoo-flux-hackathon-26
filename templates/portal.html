@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7fb">
+  <title>My account · Brightloop</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='portal.css') }}">
+</head>
+<body>
+  <header class="portal-topbar"><a class="portal-brand" href="/portal"><span class="portal-brand-mark">✓</span>Brightloop</a><div class="portal-user"><span class="portal-avatar">{{ current_user.name[:2]|upper }}</span><span class="portal-user-name">{{ current_user.name }}</span><a href="{{ url_for('logout') }}">Sign out</a></div></header>
+  <main class="portal-main">
+    <section class="portal-welcome"><div><p class="portal-eyebrow">CUSTOMER PORTAL</p><h1>Welcome, {{ current_user.name.split()[0] }}</h1><p>View your subscriptions, invoices and payment status.</p></div><span class="portal-date" id="portalDate"></span></section>
+    <section class="portal-stats"><article><span>Active subscriptions</span><strong id="portalSubscriptionCount">—</strong></article><article><span>Balance due</span><strong id="portalBalanceDue">—</strong></article></section>
+    <section class="portal-panel"><div class="portal-panel-heading"><div><h2>My subscriptions</h2><p>Your active and past subscription plans</p></div></div><div class="portal-table-wrap"><table><thead><tr><th>Plan</th><th>Billing</th><th>Price</th><th>Next billing</th><th>Status</th></tr></thead><tbody id="portalSubscriptions"></tbody></table><div class="portal-empty" id="noSubscriptions" hidden>No subscriptions found for this account.</div></div></section>
+    <section class="portal-panel"><div class="portal-panel-heading"><div><h2>My invoices</h2><p>Invoices and outstanding balances</p></div></div><div class="portal-table-wrap"><table><thead><tr><th>Invoice</th><th>Plan</th><th>Amount</th><th>Balance due</th><th>Due date</th><th>Status</th></tr></thead><tbody id="portalInvoices"></tbody></table><div class="portal-empty" id="noInvoices" hidden>No invoices are available yet.</div></div></section>
+    <footer class="portal-footer">Need help with your account? Contact the Brightloop team.</footer>
+  </main>
+  <div class="portal-toast" id="portalToast" role="status"></div>
+  <script src="{{ url_for('static', filename='portal.js') }}"></script>
+</body>
+</html>
